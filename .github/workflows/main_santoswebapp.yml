@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - name: Checkout code
@@ -33,7 +34,7 @@ jobs:
           name: static-site
 
       - name: Unzip artifact
-        run: unzip -o release.zip  # <- force overwrite without prompt
+        run: unzip -o release.zip
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -49,6 +50,7 @@ jobs:
           app-name: 'SantosWebApp'
           slot-name: 'Production'
           package: .
+
 
 
           
